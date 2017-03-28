@@ -12,7 +12,7 @@ dependencies:
 test:
   pre:
     - docker-compose -f docker-compose.yml -p teststack build
-  commands:
+  override:
     - docker-compose -f docker-compose.yml -p teststack up     
   post:
       #docker-compose stop was not stopping containers started with docker-compose run
