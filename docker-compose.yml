@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+   app:
+    image: kokohub.azurecr.io/mock/api
+    ports:
+      - "3000:3000"
+
+   web:
+        image: kokohub.azurecr.io/images/mywebsite
+        ports:
+            - "4000:4000"
+        links:
+            - app
+
+   test:
+    image: kokohub.azurecr.io/newman/tests
+    links:
+        - app
+        - web
+    environment:
+        WAIT_HOSTS: app:3000
+
+   integration:
+    image: kokohub.azurecr.io/env/test
+    links:
+        - app
+        - web
+    environment:
+        WAIT_HOSTS: app:4000
