@@ -7,7 +7,7 @@ dependencies:
     - docker -v
     - docker-compose -v
     - docker info
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e none $DOCKER_REGISTRY
+    - docker login $DOCKER_REGISTRY -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 test:
   override:
