@@ -10,8 +10,9 @@ dependencies:
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e none $DOCKER_REGISTRY
 
 test:
-  override:
+  pre:
     - docker-compose -f docker-compose.yml -p teststack build
+  commands:
     - docker-compose -f docker-compose.yml -p teststack up     
   post:
       #docker-compose stop was not stopping containers started with docker-compose run
